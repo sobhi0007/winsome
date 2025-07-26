@@ -1,66 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🧑‍💼 Employee Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel + Livewire powered Employee Management System with complete RESTful API, real-time UI, bulk actions, image upload, and automated tests. Built for performance, scalability, and ease of use.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. [Project Features](#-project-features)
+2. [Installation Guide](#-installation-guide)
+3. [API Endpoints](#-api-endpoints)
+4. [Livewire Features](#-livewire-features)
+5. [Testing](#-testing)
+6. [Useful Links](#-useful-links)
+7. [Screenshots (optional)](#-screenshots)
+8. [License](#-license)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Project Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Full CRUD for Employees (Create, Read, Update, Delete)
+- RESTful API with Laravel Sanctum authentication
+- Image upload for employee photos
+- Soft delete with restore & trash management
+- Bulk actions (delete, restore)
+- Advanced filtering & search
+- Real-time UI with Livewire
+- Fully responsive Bootstrap 5 UI
+- Database seeding (10,000+ fake employees)
+- API & Feature testing using PHPUnit
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Installation Guide
 
-## Laravel Sponsors
+### Requirements
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- PHP >= 8.1
+- Composer
+- MySQL or compatible database
+- Node.js + npm (for Vite and frontend assets)
 
-### Premium Partners
+### Steps
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```bash
+# 1. Clone the repository
+git clone https://github.com/sobhi0007/winsome.git
+cd winsome
 
-## Contributing
+# 2. Install PHP dependencies
+composer install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 3. Create .env file
+cp .env.example .env
+php artisan key:generate
 
-## Code of Conduct
+# 4. Set up your database in .env
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 5. Run migrations and seeders
+php artisan migrate --seed
 
-## Security Vulnerabilities
+# 6. Install frontend assets (if needed)
+npm install
+npm run dev
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 7. Serve the project
+php artisan serve
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔐 API Endpoints
+
+All API routes require authentication via Sanctum.
+
+### Authentication
+
+| Method | Endpoint   | Description           |
+| ------ | ---------- | --------------------- |
+| POST   | /api/login | Login & get API token |
+
+### Employee Endpoints
+
+| Method | Endpoint                    | Description                   |
+| ------ | --------------------------- | ----------------------------- |
+| GET    | /api/employees              | List employees (with trashed) |
+| POST   | /api/employees              | Create new employee           |
+| GET    | /api/employees/{id}         | Get employee details          |
+| PUT    | /api/employees/{id}         | Update employee               |
+| DELETE | /api/employees/{id}         | Soft delete employee          |
+| POST   | /api/employees/restore/{id} | Restore employee              |
+| POST   | /api/employees/bulk-delete  | Bulk delete (IDs array)       |
+| GET    | /api/employees/deleted      | List trashed employees        |
+
+> All responses are formatted using a custom `ApiResponse` helper and `EmployeeResource`.
+
+---
+
+## ⚡ Livewire Features
+
+- Component: `EmployeeCrud.php`
+- Paginated listing, real-time search & filters
+- Modal forms for create & update
+- Soft delete and restore
+- Bulk actions
+- Responsive design using Bootstrap 5
+- Integrated in `resources/views/home.blade.php`
+
+---
+
+## ✅ Testing
+
+Run automated API tests using:
+
+```bash
+php artisan test
+```
+
+Test file: `tests/Feature/EmployeeApiTest.php`
+Covers authentication, CRUD, image upload, bulk operations, soft delete & restore.
+
+---
+
+## 🔗 Useful Links
+
+- 📁 GitHub Repository: [https://github.com/sobhi0007/winsome](https://github.com/sobhi0007/winsome)
+- 📬 Postman API Documentation: [https://documenter.getpostman.com/view/26226662/2sB3B7MYRj](https://documenter.getpostman.com/view/26226662/2sB3B7MYRj)
+- 🧪 Laravel Docs: [https://laravel.com/docs](https://laravel.com/docs)
+- ⚡ Livewire Docs: [https://livewire.laravel.com](https://livewire.laravel.com)
+
+---
+
+---
+
+## 📄 License
+
+This project is open-sourced under the [MIT license](LICENSE).
+
+---
+
+> Made with ❤️ by Mohamed Sobhi
