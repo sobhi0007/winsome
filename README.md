@@ -12,8 +12,7 @@ A Laravel + Livewire powered Employee Management System with complete RESTful AP
 4. [Livewire Features](#-livewire-features)
 5. [Testing](#-testing)
 6. [Useful Links](#-useful-links)
-7. [Screenshots (optional)](#-screenshots)
-8. [License](#-license)
+7. [License](#-license)
 
 ---
 
